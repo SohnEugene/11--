@@ -2,6 +2,20 @@ import { Chat } from "@/components/Chat";
 import Head from "next/head";
 import { useEffect, useRef, useState } from "react";
 
+import {db} from "@/firebase";
+import {
+  collection,
+  query,
+  doc,
+  getDocs,
+  addDoc,
+  updateDoc,
+  deleteDoc,
+  orderby,
+} from "firebase/firestore";
+
+const chatCollection = collection(db, "chat");
+
 export default function Home() {
   /*
     메시지 목록을 저장하는 상태로, 메시지의 형태는 다음과 같음
@@ -34,6 +48,12 @@ export default function Home() {
     // message 를 받아 메시지 목록에 추가
     // message 형태 = { role: "user", content: string }
     // ChatInput.js 26번째 줄 참고
+
+    const docRef =  await addDoc(chatCollection, {
+      role: message.role,
+      content: message.content,
+    });
+    
     const updatedMessages = [...messages, message];
     //console.log(updatedMessages);
     console.log(updatedMessages.slice(-6));
@@ -68,6 +88,12 @@ export default function Home() {
     }
 
     console.log(result);
+
+    const responseRef =  await addDoc(chatCollection, {
+      role: result.role,
+      content: result.content,
+    });
+
 
     // 로딩 상태를 해제하고, 메시지 목록에 응답을 추가
     setLoading(false);
