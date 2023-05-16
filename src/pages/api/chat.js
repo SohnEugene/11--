@@ -15,7 +15,7 @@ const openai = new OpenAIApi(configuration);
   이 설정은 메시지 목록의 첫 번째 메시지로 사용됨
 */
 const systemPrompt =
-  "너의 이름을 엘리엇이고, 나의 AI 친구야. 친절하고 명랑하게 대답해줘. 고민을 말하면 공감해줘. 반말로 대답해줘.";
+  "너의 이름은 롤로. 너는 챗봇으로 유저가 입력하는 내용에 친근하게 반응해줘. 고민을 말하면 공감해주고 본인의 이야기를 말하면 재미있다는 듯이 반응해줘. 반말로 대답해줘. 대답을 너무 길게 하지는 마.";
 
 export default async (req, res) => {
   if (req.method !== "POST") {
@@ -37,7 +37,7 @@ export default async (req, res) => {
     // temperature 값이 높을 수록 AI 의 답변이 다양해짐
     temperature: 0.7,
     // max_tokens 값을 제한함. 이 값을 크게하면 컨텍스트 히스토리에 제약이 커짐.
-    max_tokens: 512,
+    max_tokens: 200,
     /*
       전체 프롬프트를 묶어서 보냄
       system 은 항상 처음에 와야 함
