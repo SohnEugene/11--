@@ -35,8 +35,8 @@ export default function Home() {
     // message 형태 = { role: "user", content: string }
     // ChatInput.js 26번째 줄 참고
     const updatedMessages = [...messages, message];
-    // console.log(updatedMessages);
-    // console.log(updatedMessages.slice(-6));
+    //console.log(updatedMessages);
+    console.log(updatedMessages.slice(-6));
 
     setMessages(updatedMessages);
     // 메시지 전송 중임을 표시
@@ -67,7 +67,7 @@ export default function Home() {
       return;
     }
 
-    // console.log(result);
+    console.log(result);
 
     // 로딩 상태를 해제하고, 메시지 목록에 응답을 추가
     setLoading(false);
@@ -80,7 +80,7 @@ export default function Home() {
     setMessages([
       {
         role: "assistant",
-        content: "안녕? 나는 롤로야. 오늘은 무슨 일이 있었니?",
+        content: "안녕? 내 이름은 롤로야! 오늘 무슨 일이 있었니?",
       },
     ]);
   };
